@@ -16,14 +16,18 @@ class Student:
         if not (0<=grade<=20) :
             raise ValueError("Grade must be between 0 and 20.")
         self.grades[topic]=grade
-    
 
+    def followed_topics(self) :
+        return list(self.grades.keys())
+    
 try:
     student = Student("Achille", "Talon")
     student.add_grade("History", 10.)
-    student.add_grade("History", 12.)
+    topics = student.followed_topics()
+    if len(topics) != 1 or "History" not in topics:
+        raise Exception(f"Expecting ['History'] got {topics}")
 except Exception as e:
-    print('OOPS - There is an issue in your add_grade method.')
+    print('OOPS - There is an issue in your followed_topics method')
     print(f"Error message : {e}")
 else:
     print('Congrats ! Your implementation works !')
